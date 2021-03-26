@@ -1,25 +1,26 @@
 module github.com/xtls/xray-core
 
-go 1.15
+go 1.16
 
 require (
-	github.com/dgryski/go-metro v0.0.0-20200812162917-85c65e2d0165 // indirect
-	github.com/golang/mock v1.4.4
+	github.com/ghodss/yaml v1.0.1-0.20190212211648-25d852aebe32
+	github.com/golang/mock v1.5.0
 	github.com/golang/protobuf v1.4.3
-	github.com/google/go-cmp v0.5.4
+	github.com/google/go-cmp v0.5.5
 	github.com/gorilla/websocket v1.4.2
 	github.com/lucas-clemente/quic-go v0.19.3
-	github.com/miekg/dns v1.1.35
-	github.com/pires/go-proxyproto v0.3.3
-	github.com/seiflotfy/cuckoofilter v0.0.0-20201009151232-afb285a456ab
-	github.com/stretchr/testify v1.6.1
+	github.com/miekg/dns v1.1.40
+	github.com/pelletier/go-toml v1.8.1
+	github.com/pires/go-proxyproto v0.5.0
+	github.com/seiflotfy/cuckoofilter v0.0.0-20201222105146-bc6005554a0c
+	github.com/stretchr/testify v1.7.0
 	github.com/xtls/go v0.0.0-20201118062508-3632bf3b7499
-	go.starlark.net v0.0.0-20201210151846-e81fc95f7bd5
-	golang.org/x/crypto v0.0.0-20201217014255-9d1352758620
-	golang.org/x/net v0.0.0-20201216054612-986b41b23924
-	golang.org/x/sync v0.0.0-20201207232520-09787c993a3a
-	golang.org/x/sys v0.0.0-20201218084310-7d0127a74742
-	google.golang.org/grpc v1.34.0
+	go.starlark.net v0.0.0-20210312235212-74c10e2c17dc
+	golang.org/x/crypto v0.0.0-20210220033148-5ea612d1eb83
+	golang.org/x/net v0.0.0-20210226172049-e18ecbb05110
+	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
+	golang.org/x/sys v0.0.0-20210313202042-bd2e13477e9c
+	google.golang.org/grpc v1.36.0
 	google.golang.org/protobuf v1.25.0
 	h12.io/socks v1.0.2
 )

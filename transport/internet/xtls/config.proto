@@ -8,10 +8,10 @@ option java_multiple_files = true;
 
 message Certificate {
   // TLS certificate in x509 format.
-  bytes Certificate = 1;
+  bytes certificate = 1;
 
   // TLS key in x509 format.
-  bytes Key = 2;
+  bytes key = 2;
 
   enum Usage {
     ENCIPHERMENT = 0;
@@ -20,6 +20,17 @@ message Certificate {
   }
 
   Usage usage = 3;
+
+  uint64 ocsp_stapling = 4;
+
+  // TLS certificate path
+  string certificate_path = 5;
+
+  // TLS Key path
+  string key_path = 6;
+
+  // If true, one-Time Loading
+  bool One_time_loading = 7;
 }
 
 message Config {
@@ -35,8 +46,8 @@ message Config {
   // Lists of string as ALPN values.
   repeated string next_protocol = 4;
 
-  // Whether or not to disable session (ticket) resumption.
-  bool disable_session_resumption = 5;
+  // Whether or not to enable session (ticket) resumption.
+  bool enable_session_resumption = 5;
 
   // If true, root certificates on the system will not be loaded for
   // verification.

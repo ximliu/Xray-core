@@ -16,6 +16,7 @@ import (
 
 	// Other optional features.
 	_ "github.com/xtls/xray-core/app/dns"
+	_ "github.com/xtls/xray-core/app/dns/fakedns"
 	_ "github.com/xtls/xray-core/app/log"
 	_ "github.com/xtls/xray-core/app/policy"
 	_ "github.com/xtls/xray-core/app/reverse"
@@ -39,6 +40,7 @@ import (
 
 	// Transports
 	_ "github.com/xtls/xray-core/transport/internet/domainsocket"
+	_ "github.com/xtls/xray-core/transport/internet/grpc"
 	_ "github.com/xtls/xray-core/transport/internet/http"
 	_ "github.com/xtls/xray-core/transport/internet/kcp"
 	_ "github.com/xtls/xray-core/transport/internet/quic"
@@ -57,15 +59,14 @@ import (
 	_ "github.com/xtls/xray-core/transport/internet/headers/wechat"
 	_ "github.com/xtls/xray-core/transport/internet/headers/wireguard"
 
-	// JSON config support. Choose only one from the two below.
-	// The following line loads JSON from xctl
-	// _ "github.com/xtls/xray-core/main/json"
-	// The following line loads JSON internally
-	_ "github.com/xtls/xray-core/main/jsonem"
+	// JSON & TOML & YAML
+	_ "github.com/xtls/xray-core/main/json"
+	_ "github.com/xtls/xray-core/main/toml"
+	_ "github.com/xtls/xray-core/main/yaml"
 
 	// Load config from file or http(s)
 	_ "github.com/xtls/xray-core/main/confloader/external"
 
-	// commands
+	// Commands
 	_ "github.com/xtls/xray-core/main/commands/all"
 )

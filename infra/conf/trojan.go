@@ -85,6 +85,7 @@ func (c *TrojanClientConfig) Build() (proto.Message, error) {
 
 // TrojanInboundFallback is fallback configuration
 type TrojanInboundFallback struct {
+	Name string          `json:"name"`
 	Alpn string          `json:"alpn"`
 	Path string          `json:"path"`
 	Type string          `json:"type"`
@@ -103,7 +104,7 @@ type TrojanUserConfig struct {
 // TrojanServerConfig is Inbound configuration
 type TrojanServerConfig struct {
 	Clients   []*TrojanUserConfig      `json:"clients"`
-	Fallback  json.RawMessage          `json:"fallback"`
+	Fallback  *TrojanInboundFallback   `json:"fallback"`
 	Fallbacks []*TrojanInboundFallback `json:"fallbacks"`
 }
 
@@ -144,6 +145,7 @@ func (c *TrojanServerConfig) Build() (proto.Message, error) {
 			_ = json.Unmarshal(fb.Dest, &s)
 		}
 		config.Fallbacks = append(config.Fallbacks, &trojan.Fallback{
+			Name: fb.Name,
 			Alpn: fb.Alpn,
 			Path: fb.Path,
 			Type: fb.Type,
@@ -167,7 +169,7 @@ func (c *TrojanServerConfig) Build() (proto.Message, error) {
 				switch fb.Dest[0] {
 				case '@', '/':
 					fb.Type = "unix"
-					if fb.Dest[0] == '@' && len(fb.Dest) > 1 && fb.Dest[1] == '@' && runtime.GOOS == "linux" {
+					if fb.Dest[0] == '@' && len(fb.Dest) > 1 && fb.Dest[1] == '@' && (runtime.GOOS == "linux" || runtime.GOOS == "android") {
 						fullAddr := make([]byte, len(syscall.RawSockaddrUnix{}.Path)) // may need padding to work with haproxy
 						copy(fullAddr, fb.Dest[1:])
 						fb.Dest = string(fullAddr)
